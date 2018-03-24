@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Book id="tbls" notImportSheets="Notes,TBL_LIST,_*_">
+	<Sheet id="_LIST_" sheetName="TBL_LIST" tplSheet="_LIST_" >
+		<Area id="TL" fillModel="Row" beginCell="B15" endCell="N15"
+			variable="$[entityList:entity]"
+			titleRow="0" titleRowNum="1" dataBeginRow="2"
+			tplRowNum="1" >
+			<Row no="16">
+				<Cell pos="B16">$[:id]</Cell>
+				<!-- <Cell pos="C16">$[_COMMON.LIST_INDEX]</Cell> -->
+				<Cell pos="D16" notNull="Y">$[:code]</Cell>
+				<Cell pos="E16">$[:name]</Cell>
+				<Cell pos="F16">$[:notes]</Cell>
+				<Cell pos="G16">$[:sysCode]</Cell>
+				<Cell pos="H16">$[:modCode]</Cell>
+				<Cell pos="I16">$[:status]</Cell>
+				<Cell pos="J16">$[:devVersion]</Cell>
+				<Cell pos="K16">$[:mName]</Cell>
+				<Cell pos="L16">$[:cTime]</Cell>
+				<Cell pos="M16">$[:mTime]</Cell>
+			</Row>
+		</Area>
+	</Sheet>
+
+	<Sheet id="_TBL_" variable="$[entityList:entity]" repeatBy="$[entityList]" elementName="$[entity]{org.jeap.devdb.entity.dev.TDevEntity}" 
+		sheetName="$[entity.code]" tplSheet="_TBL_" >
+		<Area id="TH" fillModel="Fixed" beginCell="B15" endCell="AF18">
+			<Row no="16">
+				<Cell pos="B16">$[entity.id]</Cell>
+				<Cell pos="C16">$[entity.code]</Cell>
+				<Cell pos="I16">$[entity.name]</Cell>
+				<Cell pos="N16">$[entity.sysCode]</Cell>
+				<Cell pos="P16">$[entity.modCode]</Cell>
+				<Cell pos="U16">$[entity.status]</Cell>
+				<Cell pos="W16">$[entity.devVersion]</Cell>
+				<Cell pos="Y16">$[entity.cTime]</Cell>
+			</Row>
+			<Row no="18">
+				<Cell pos="C18">$[entity.notes]</Cell>
+				<Cell pos="P18">$[entity.dbms]</Cell>
+				<Cell pos="R18">$[entity.owner]</Cell>
+				<Cell pos="U18">$[entity.mName]</Cell>
+				<Cell pos="Y18">$[entity.mTime]</Cell>
+			</Row>
+		</Area>
+		
+		<Area id="TC" fillModel="Dynamic" beginCell="B21" endCell="AF24"
+			variable="$[entity.TDevAttributes]{*org.jeap.devdb.entity.dev.TDevAttribute}"
+			titleRow="0" titleRowNum="1" dataBeginRow="2" dataEndRow="-2"
+			tplRowNum="1" >
+			<Row no="22">
+				<Cell pos="B22">$[:id]</Cell>
+				<Cell pos="C22">$[:seq]</Cell>
+				<Cell pos="D22" notNull="Y">$[:code]</Cell>
+				<Cell pos="I22">$[:name]</Cell>
+				<Cell pos="N22">$[:dataType]</Cell>
+				<Cell pos="P22">$[:length]</Cell>
+				<Cell pos="Q22">$[:precise]</Cell>
+				<Cell pos="R22">$[:scale]</Cell>
+				<Cell pos="S22">$[:nnFlag,(Y=○)]</Cell>
+				<Cell pos="T22">$[:pkFlag,(Y=○)]</Cell>
+				<Cell pos="U22">$[:uqFlag,(Y=○)]</Cell>
+				<Cell pos="V22">$[:aiFlag]</Cell>
+				<Cell pos="W22">$[:dftValue]</Cell>
+				<Cell pos="Y22">$[:notes]</Cell>
+			</Row>
+		</Area>
+		<Area id="KEY" fillModel="Dynamic" beginCell="B27" endCell="AF35"
+			variable="$[entity.TDevEntKeys]{*org.jeap.devdb.entity.dev.TDevEntKey}"
+			titleRow="0" titleRowNum="2" dataBeginRow="5" dataEndRow="-1"
+			tplRowNum="3" >
+			<Row no="29">
+				<Cell pos="B29">$[:id]</Cell>
+				<Cell pos="C29">$[:type]</Cell>
+				<Cell pos="D29" notNull="Y">$[:code]</Cell>
+				<Cell pos="N29">$[:name]</Cell>
+				<Cell pos="W29">$[:clFlag]</Cell>
+				<Cell pos="X29">$[:orderFlag]</Cell>
+				<Cell pos="Y29">$[:notes]</Cell>
+			</Row>
+			<Column id="KEY.AR" beginCell="D30" endCell="V31" 
+				variable="$[entity.TDevEntKeys:TDevKeyAttributes]{*org.jeap.devdb.entity.dev.TDevKeyAttribute}" >
+				<Cell pos="D30:E30" notNull="Y">$[:TDevAttribute.code]</Cell>
+				<Cell pos="D31:E31">$[:TDevAttribute.name]</Cell>
+			</Column>
+		</Area>
+		<Area id="FK" fillModel="Dynamic" beginCell="B38" endCell="AF46"
+			variable="$[entity.TDevEntRelationsForSrcEntId]{*org.jeap.devdb.entity.dev.TDevEntRelation}"
+			titleRow="0" titleRowNum="2" dataBeginRow="5" dataEndRow="-1"
+			tplRowNum="3" >
+			<Row no="40">
+				<Cell pos="B40">$[:id]</Cell>
+				<Cell pos="C40">$[:type]</Cell>
+				<Cell pos="D40" notNull="Y">$[:srcKeyCode]</Cell>
+				<Cell pos="I40">$[:TDevEntityByDestEntId.code]</Cell>
+				<Cell pos="W40">$[:destMulti]</Cell>
+				<Cell pos="X40">$[:onDelete]</Cell>
+				<Cell pos="Y40">$[:notes]</Cell>
+			</Row>
+			<Row no="41">
+				<Cell pos="D41">$[:srcKeyName]</Cell>
+				<Cell pos="I41">$[:destKeyCode]</Cell>
+				<Cell pos="W41">$[:srcMulti]</Cell>
+			</Row>
+			<Column id="FK.AR" beginCell="L40" endCell="V42" 
+				variable="$[entity.TDevEntRelationsForSrcEntId:TDevErAttributes]{*org.jeap.devdb.entity.dev.TDevErAttribute}" >
+				<Cell pos="L40:M40" notNull="Y">$[:TDevAttributeByDestAttrId.code]</Cell>
+				<Cell pos="L41:M41" notNull="Y">$[:TDevAttributeBySrcAttrId.code]</Cell>
+				<Cell pos="L42:M42">$[:TDevAttributeBySrcAttrId.name]</Cell>
+			</Column>
+		</Area>
+	</Sheet>
+</Book>
