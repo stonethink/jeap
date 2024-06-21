@@ -12,10 +12,10 @@
 	<context:component-scan base-package="org.jeap.poi.sample.service.*">
 	</context:component-scan>
 
-	<bean id="defaultDataContext" class="com.yunkanghealth.yktechcom.poi.data.impl.DefaultDataContext"></bean>
+	<bean id="defaultDataContext" class="com.jeap.poi.data.impl.DefaultDataContext"></bean>
 	
 	<!-- entityBookExporter begin -->
-	<bean id="entityBookExporter" class="com.yunkanghealth.yktechcom.poi.excel.exporter.BookExporter" >
+	<bean id="entityBookExporter" class="com.jeap.poi.excel.exporter.BookExporter" >
 		<property name="dataContext" ref="defaultDataContext" />
 		<property name="bookProperties">
 			<map>
@@ -42,7 +42,7 @@
 	<!-- entityBookExporter end -->
 	
 	<!-- entityBookImporter begin -->
-	<bean id="entityBookImporter" class="com.yunkanghealth.yktechcom.poi.excel.importer.BookImporter" >
+	<bean id="entityBookImporter" class="com.jeap.poi.excel.importer.BookImporter" >
 		<property name="dataContext" ref="defaultDataContext" />
 		<property name="bookProperties">
 			<map>

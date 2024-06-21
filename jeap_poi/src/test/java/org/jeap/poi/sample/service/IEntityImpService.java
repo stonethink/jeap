@@ -1,6 +1,6 @@
 package org.jeap.poi.sample.service;
 
-import com.yunkanghealth.yktechcom.poi.data.IDataContext;
+import com.jeap.poi.data.IDataContext;
 
 public interface IEntityImpService {
 

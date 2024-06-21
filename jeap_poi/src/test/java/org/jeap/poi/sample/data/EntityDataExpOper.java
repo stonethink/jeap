@@ -3,7 +3,7 @@ package org.jeap.poi.sample.data;
 import org.jeap.poi.sample.service.IEntityExpService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.yunkanghealth.yktechcom.poi.data.impl.BaseDataOper;
+import com.jeap.poi.data.impl.BaseDataOper;
 
 public class EntityDataExpOper extends BaseDataOper {
 	@Autowired

@@ -17,9 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.yunkanghealth.yktechcom.poi.data.IDataContext;
-import com.yunkanghealth.yktechcom.poi.excel.IBookImporter;
-import com.yunkanghealth.yktechcom.tools.util.JeapStringUtil;
+import com.jeap.poi.data.IDataContext;
+import com.jeap.poi.excel.IBookImporter;
+import com.jeap.tools.util.JeapStringUtil;
 
 @Service("entityImpService")
 @Transactional
